@@ -26,7 +26,6 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-import com.squareup.picasso.Picasso;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -95,7 +94,7 @@ public class add_plant_track extends AppCompatActivity {
         trackplantImg = findViewById(R.id.planttrackImg);
 
         //if track plant is clicked on a specific plantcyclopedia gets intent then transfer here
-        Intent rIn = getIntent();
+        /*Intent rIn = getIntent();
 
         if (rIn != null){
             String newTrackName = rIn.getStringExtra("AddNewTrack");
@@ -111,9 +110,9 @@ public class add_plant_track extends AppCompatActivity {
                     startActivityForResult(intent, img_code);
                 }
             });
-            pName = trackName.getText().toString().trim();
 
-        }
+
+        }*/
 
 
         /* get current date for date planted */
@@ -156,12 +155,13 @@ public class add_plant_track extends AppCompatActivity {
                 startActivityForResult(intent, img_code);
             }
         });
-        pName = trackName.getText().toString().trim();
+
 
         trackPlantBtn = findViewById(R.id.trackPlantBtn);
         trackPlantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                pName = trackName.getText().toString().trim();
 
                 String pPlanted = datePlanted.getText().toString().trim();
                 String spinnerWF1 = spnWF1.getSelectedItem().toString().trim();

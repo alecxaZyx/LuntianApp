@@ -124,6 +124,7 @@ public class plant_view extends AppCompatActivity {
         pruningTxt.setText(pruning);
         repotTxt.setText(repot);
 
+        /*
         addCurrentPlantBtn = findViewById(R.id.addCurrentPlantBtn);
         addCurrentPlantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -135,7 +136,7 @@ public class plant_view extends AppCompatActivity {
                  startActivity(in);
                  finish();
             }
-        });
+        });*/
 
     }
 }
