@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_centerHorizontal="true"
+    android:layout_row="0"
+    android:layout_column="0"
+    android:layout_gravity="fill"
+    android:layout_rowWeight="1"
+    android:layout_columnWeight="1"
+    android:layout_margin="15dp"
+    app:cardCornerRadius="10dp"
+    app:cardElevation="10dp"
+    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_margin="5dp"
+            android:layout_gravity="start">
+            <ImageView
+                android:layout_width="110dp"
+                android:layout_height="80dp"
+                android:id="@+id/cardPlant_img"></ImageView>
+            <TextView
+                android:id="@+id/cardPlant_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="id"
+                android:visibility="invisible"></TextView>
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginTop="10dp">
+                <TextView
+                android:id="@+id/cardPlant_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Plant Name Here"
+                android:fontFamily="@font/fredoka_regular"
+                android:textColor="@color/darker_green"
+                android:textSize="22sp"
+                android:layout_marginStart="10dp"
+                android:layout_gravity="center_vertical"></TextView>
+                <TextView
+                    android:id="@+id/cardPlant_scientific"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:text="Plant Scientific Name Here"
+                    android:fontFamily="@font/raleway_italic"
+                    android:textColor="@color/darker_green"
+                    android:textSize="16sp"
+                    android:layout_marginStart="10dp"
+                    android:layout_gravity="center_vertical"></TextView>
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+
+</androidx.cardview.widget.CardView>

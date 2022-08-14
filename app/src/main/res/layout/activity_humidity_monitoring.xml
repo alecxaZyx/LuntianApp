@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".humidity_monitoring">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:background="@drawable/topbar"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/appTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="50dp"
+            android:fontFamily="@font/bungee_shade"
+            android:includeFontPadding="false"
+            android:padding="15dp"
+            android:text="LUNTIAN"
+            android:textColor="@color/dark_green"
+            android:textSize="45sp"></TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/setHumidity"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginTop="170dp"
+        android:background="@drawable/textbg_rounded"
+        android:orientation="vertical"
+        android:visibility="invisible">
+
+        <TextView
+
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/raleway_regular"
+            android:padding="7dp"
+            android:text="Set Humidity"
+            android:textColor="@color/white"
+            android:textSize="16sp"></TextView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:paddingLeft="30dp"
+                android:paddingRight="50dp"
+                android:text="Minimum"
+                android:textColor="@color/white"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:paddingLeft="50dp"
+                android:paddingRight="30dp"
+                android:text="Maximum"
+                android:textColor="@color/white"></TextView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <EditText
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="40dp"
+                android:background="@drawable/edittext_bg_white"
+                android:padding="1dp"
+                android:textSize="15sp"></EditText>
+
+            <EditText
+                android:layout_width="80dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:background="@drawable/edittext_bg_white"
+                android:padding="1dp"
+                android:textSize="15sp"></EditText>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/setHumidityBtn"
+            android:layout_width="80dp"
+            android:layout_height="35dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="10dp"
+            android:background="@drawable/mybutton"
+            android:fontFamily="@font/fredoka_regular"
+            android:includeFontPadding="false"
+            android:text="SET"
+            android:textColor="@color/darker_green"
+            app:backgroundTint="@color/white"
+            android:visibility="invisible"
+            ></Button>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="110dp"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:id="@+id/humidityTitle"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:background="@drawable/textbg_rounded"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:fontFamily="@font/fredoka_regular"
+                android:padding="5dp"
+                android:text="Humidity Monitoring"
+                android:textColor="@color/white"
+                android:textSize="25sp"></TextView>
+        </LinearLayout>
+
+
+        <!-- layout for current humidity -->
+        <LinearLayout
+            android:id="@+id/currentHumidity"
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textbg_rounded"
+            android:orientation="vertical"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:padding="10dp"
+                android:text="Current Humidity"
+                android:textColor="@color/white"
+                android:textSize="16sp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/fredoka_regular"
+                android:padding="10dp"
+                android:text="70 %"
+                android:textColor="@color/white"
+                android:textSize="45sp"></TextView>
+        </LinearLayout>
+
+        <!-- layout ofr current temperature -->
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textbg_rounded"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:padding="10dp"
+                android:text="Temperature"
+                android:textColor="@color/white"
+                android:textSize="16sp"></TextView>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="@font/fredoka_regular"
+                android:padding="10dp"
+                android:text="31 °C"
+                android:textColor="@color/white"
+                android:textSize="45sp"></TextView>
+        </LinearLayout>
+
+        <!-- fan layout -->
+        <LinearLayout
+            android:layout_width="330dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/textbg_rounded"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/raleway_regular"
+                android:padding="10dp"
+                android:text="Fan Status"
+                android:textColor="@color/white"
+                android:textSize="16sp"></TextView>
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchFanStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/darker_green"
+                android:textOff="OFF"
+                android:textOn="ON"
+                android:textSize="40sp"
+                android:thumb="@drawable/switch_thumb"
+                app:showText="true"
+                app:track="@drawable/switch_track"></androidx.appcompat.widget.SwitchCompat>
+
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="340dp"
+            android:layout_height="60dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="15dp"
+            android:background="@drawable/divider3"></ImageView>
+    </LinearLayout>
+</RelativeLayout>
