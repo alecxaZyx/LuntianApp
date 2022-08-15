@@ -1,10 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout
+ xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
+    android:fitsSystemWindows="true"
+    tools:openDrawer="start">
+
+
+    <com.google.android.material.navigation.NavigationView
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:id="@+id/nav_view"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/main_menu"
+        android:layout_gravity="start"/>
+
+
+
+
 
 
     <LinearLayout
@@ -14,24 +31,24 @@
         android:background="@drawable/topbar"
         android:padding="10dp">
 
-            <!--<ImageView
-                android:id="@+id/sidebarBtn"
-                android:layout_width="45dp"
-                android:layout_height="40dp"
-                android:background="@drawable/hamburger"
-                android:layout_marginTop="18dp"
-                android:layout_marginLeft="5dp"></ImageView>-->
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="50dp"
-                android:fontFamily="@font/bungee_shade"
-                android:includeFontPadding="false"
-                android:padding="15dp"
-                android:text="LUNTIAN"
-                android:textColor="@color/dark_green"
-                android:textSize="45sp"></TextView>
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="45dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/hamburger"></androidx.appcompat.widget.Toolbar>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/bungee_shade"
+            android:includeFontPadding="false"
+            android:padding="15dp"
+            android:text="LUNTIAN"
+            android:textColor="@color/dark_green"
+            android:textSize="45sp"></TextView>
 
 
 
@@ -39,11 +56,6 @@
     </LinearLayout>
 
 
-    <androidx.drawerlayout.widget.DrawerLayout
-        android:id="@+id/sidebar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true">
 
         <ScrollView
             android:layout_width="match_parent"
@@ -108,15 +120,7 @@
             </LinearLayout>
         </ScrollView>
 
-        <com.google.android.material.navigation.NavigationView
-            android:id="@+id/sideNavView"
-            android:layout_width="250dp"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:background="@color/dark_green"
-            app:headerLayout="@layout/side_navbar">
 
-        </com.google.android.material.navigation.NavigationView>
-    </androidx.drawerlayout.widget.DrawerLayout>
 
-</RelativeLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

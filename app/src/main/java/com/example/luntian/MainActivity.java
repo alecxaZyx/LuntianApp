@@ -1,20 +1,36 @@
 package com.example.luntian;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
-public class MainActivity extends AppCompatActivity {
+import com.google.android.material.navigation.NavigationView;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     ImageView humidityBtn, soilmoistureBtn, plannerBtn, plantcyclopediaBtn, plantgrowthBtn, reminderBtn;
+    DrawerLayout drawerLayout;
+    NavigationView navigationView;
+    Toolbar toolbar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        drawerLayout = findViewById(R.id.drawer_layout);
+        navigationView = findViewById(R.id.nav_view);
+        toolbar = findViewById(R.id.toolbar);
 
         humidityBtn = findViewById(R.id.humidityBtn);
         soilmoistureBtn = findViewById(R.id.soilmoistureBtn);
@@ -22,8 +38,6 @@ public class MainActivity extends AppCompatActivity {
         plantcyclopediaBtn = findViewById(R.id.plancyclopediaBtn);
         plantgrowthBtn = findViewById(R.id.plantgrowthBtn);
         reminderBtn = findViewById(R.id.reminderBtn);
-
-
 
 
         humidityBtn.setOnClickListener(new View.OnClickListener() {
@@ -71,9 +85,93 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+
+
+
         /*
-       */
+         */
+
+        /*----------------------------------TOOLBAR------------------------------------------*/
+
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+
+
+        /*---------Navigation Drawer Menu -----------------------------------------*/
+        navigationView.bringToFront();
+        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        drawerLayout.addDrawerListener(toggle);
+        toggle.syncState();
+        navigationView.setNavigationItemSelectedListener(this);
+
+
 
     }
 
-}
+    @Override
+    public void onBackPressed() {
+
+        if(drawerLayout.isDrawerOpen(GravityCompat.START)) {
+            drawerLayout.closeDrawer(GravityCompat.START);
+        }
+        else{
+            super.onBackPressed();
+        }
+
+    }
+
+    @SuppressLint("NonConstantResourceId")
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        switch (item.getItemId()) {
+            case R.id.nav_humidity:
+                Intent intent = new Intent(MainActivity.this,humidity_monitoring.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_soil:
+
+                intent = new Intent(MainActivity.this, soil_moisture.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_plant:
+
+                intent = new Intent(MainActivity.this, plant_growth_tracking.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_plantcyclopedia:
+
+                intent = new Intent(MainActivity.this, plantcyclopedia.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_reminders:
+
+                intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_notification:
+
+                intent = new Intent(MainActivity.this, MainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_planner:
+
+                intent = new Intent(MainActivity.this, ReminderMainActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+
+                intent = new Intent(MainActivity.this, login.class);
+                startActivity(intent);
+                break;
+
+
+        }
+        drawerLayout.closeDrawer(GravityCompat.START)  ;
+        return true;
+    }
+
+
+    }
+
+
