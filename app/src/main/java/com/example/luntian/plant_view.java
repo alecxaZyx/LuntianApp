@@ -124,19 +124,19 @@ public class plant_view extends AppCompatActivity {
         pruningTxt.setText(pruning);
         repotTxt.setText(repot);
 
-        /*
+
         addCurrentPlantBtn = findViewById(R.id.addCurrentPlantBtn);
         addCurrentPlantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent in = new Intent(plant_view.this, add_plant_track.class);
                  in.putExtra("AddNewTrack" , name);
-                 in.putExtra("AddNewImg", imgUri);
+                 in.putExtra("AddNewImg", imgUri.toString());
 
                  startActivity(in);
                  finish();
             }
-        });*/
+        });
 
     }
 }

@@ -52,6 +52,7 @@ public class add_plant_track extends AppCompatActivity {
     FirebaseStorage storage;
     StorageReference storageReference;
 
+    Intent rIn;
 
     public add_plant_track() {
     }
@@ -94,25 +95,12 @@ public class add_plant_track extends AppCompatActivity {
         trackplantImg = findViewById(R.id.planttrackImg);
 
         //if track plant is clicked on a specific plantcyclopedia gets intent then transfer here
-        /*Intent rIn = getIntent();
-
-        if (rIn != null){
-            String newTrackName = rIn.getStringExtra("AddNewTrack");
-            String newTrackImg = rIn.getStringExtra("AddNewImg");
-            trackName.setText(newTrackName);
-            Picasso.get().load(newTrackImg).into(trackplantImg);
-        } else {
-            trackplantImg.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
-                    intent.setType("image/*");
-                    startActivityForResult(intent, img_code);
-                }
-            });
 
 
-        }*/
+
+
+
+
 
 
         /* get current date for date planted */
@@ -147,6 +135,21 @@ public class add_plant_track extends AppCompatActivity {
         pd = new ProgressDialog(this);
 
 
+
+
+
+        rIn = getIntent();
+        if (rIn != null){
+            String newtrackName = rIn.getStringExtra("AddNewTrack");
+            //String newTrackImg = rIn.getStringExtra("AddNewImg");
+            trackName.setText(newtrackName);
+            //Picasso.get().load(newTrackImg).into(trackplantImg);
+            pName = trackName.getText().toString().trim();
+
+            //String newTrackImg = rIn.getStringExtra("AddNewImg");
+            //imageUri = Uri.parse(newTrackImg);
+           // trackplantImg.setImageURI(imageUri);
+        }
         trackplantImg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -155,14 +158,13 @@ public class add_plant_track extends AppCompatActivity {
                 startActivityForResult(intent, img_code);
             }
         });
-
-
         trackPlantBtn = findViewById(R.id.trackPlantBtn);
         trackPlantBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                pName = trackName.getText().toString().trim();
 
+
+                pName = trackName.getText().toString().trim();
                 String pPlanted = datePlanted.getText().toString().trim();
                 String spinnerWF1 = spnWF1.getSelectedItem().toString().trim();
                 String spinnerWF2 = spnWF2.getSelectedItem().toString().trim();
@@ -206,7 +208,11 @@ public class add_plant_track extends AppCompatActivity {
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
 
-        if(requestCode == img_code && resultCode == RESULT_OK){
+        /*if(rIn != null){
+            String newTrackImg = rIn.getStringExtra("AddNewImg");
+            imageUri = Uri.parse(newTrackImg);
+            trackplantImg.setImageURI(imageUri);
+        } else*/ if(requestCode == img_code && resultCode == RESULT_OK){
             imageUri = data.getData();
             trackplantImg.setImageURI(imageUri);
         }
