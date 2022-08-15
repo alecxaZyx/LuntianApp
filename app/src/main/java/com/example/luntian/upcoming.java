@@ -43,7 +43,7 @@ public class upcoming extends AppCompatActivity {
         ListAdapter = new ListAdapter(this, list);
         recyclerView.setAdapter(ListAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.orderByChild("dt").limitToLast(5).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 

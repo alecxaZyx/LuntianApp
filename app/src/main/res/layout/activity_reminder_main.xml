@@ -57,7 +57,9 @@
             android:layout_marginTop="15dp"
             android:drawableLeft="@drawable/star"
             android:text="TODAY"
-            android:textSize="30dp" />
+            android:textSize="30dp"
+            android:textColor="#51A375"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userList"

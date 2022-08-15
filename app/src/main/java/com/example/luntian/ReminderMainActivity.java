@@ -17,12 +17,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.DateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class ReminderMainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference database;
+    Calendar calendar = Calendar.getInstance();
+    String currentdate = DateFormat.getDateInstance().format(calendar.getTime());
     com.example.luntian.adapter.ListAdapter ListAdapter;
     ArrayList<Reminder> list;
 
@@ -42,21 +46,17 @@ public class ReminderMainActivity extends AppCompatActivity {
         ListAdapter = new ListAdapter(this,list);
         recyclerView.setAdapter(ListAdapter);
 
-        database.addValueEventListener(new ValueEventListener() {
+        database.orderByChild("dt").limitToFirst(4).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    String dtDB = (String) dataSnapshot.child("dt").getValue();
-                    String cdtDB = (String) dataSnapshot.child("currentDate").getValue();
-                    //Date dateFromDB = currentDate.parse(dateAsStringFromDB);
-                    //Date dateFromDB = currentDate.parse(dateAsStringFromDB);
-                    if (dtDB == cdtDB) {
+                for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
                         Reminder reminder = dataSnapshot.getValue(Reminder.class);
                         list.add(reminder);
+
+
                     }
-                }
-                ListAdapter.notifyDataSetChanged();
+                    ListAdapter.notifyDataSetChanged();
+
 
             }
 
