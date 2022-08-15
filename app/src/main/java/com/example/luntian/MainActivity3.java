@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -26,17 +27,23 @@ import java.util.Date;
 
 public class MainActivity3 extends AppCompatActivity  {
 
-    TextView timer, date;
+    TextView timer, date, textViewDate;
     int timerHour,timerMinute;
     private TextView selectDate;
     EditText title, desc;
     Button confirm, planner;
+    Calendar calendar = Calendar.getInstance();
+    String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     DatabaseReference reminderDBRef;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        //current date
+        textViewDate = findViewById(R.id.text_view_date);
+        textViewDate.setText(currentDate);
 
         //time
         timer = findViewById(R.id.timer);
@@ -114,6 +121,7 @@ public class MainActivity3 extends AppCompatActivity  {
         desc = findViewById(R.id.desc);
         timer = findViewById(R.id.timer);
         date = findViewById(R.id.date);
+        textViewDate = findViewById(R.id.text_view_date);
         confirm = findViewById(R.id.confirm);
 
         reminderDBRef = FirebaseDatabase.getInstance().getReference().child("Reminder");
@@ -131,7 +139,8 @@ public class MainActivity3 extends AppCompatActivity  {
         String d = desc.getText().toString();
         String tm = timer.getText().toString();
         String dt = date.getText().toString();
-        Reminder reminder = new Reminder(t,d,tm,dt);
+        String currentDate = textViewDate.getText().toString();
+        Reminder reminder = new Reminder(t,d,tm,dt, currentDate);
 
         reminderDBRef.push().setValue(reminder);
         Toast.makeText(MainActivity3.this, "Data Inserted", Toast.LENGTH_SHORT).show();

@@ -17,11 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.Locale;
 
 public class ReminderMainActivity extends AppCompatActivity {
 
@@ -29,10 +25,7 @@ public class ReminderMainActivity extends AppCompatActivity {
     DatabaseReference database;
     com.example.luntian.adapter.ListAdapter ListAdapter;
     ArrayList<Reminder> list;
-    Calendar calendar = Calendar.getInstance();
-    String datee = "2022-08-14";
-    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+
 
 
     @Override
@@ -49,15 +42,19 @@ public class ReminderMainActivity extends AppCompatActivity {
         ListAdapter = new ListAdapter(this,list);
         recyclerView.setAdapter(ListAdapter);
 
-        database.child("Reminder").orderByChild("dt").startAt(currentDate)
-                .endAt(currentDate + "\uf8ff").addValueEventListener(new ValueEventListener() {
+        database.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()){
-                    Reminder reminder = dataSnapshot.getValue(Reminder.class);
-                    list.add(reminder);
-
+                    String dtDB = (String) dataSnapshot.child("dt").getValue();
+                    String cdtDB = (String) dataSnapshot.child("currentDate").getValue();
+                    //Date dateFromDB = currentDate.parse(dateAsStringFromDB);
+                    //Date dateFromDB = currentDate.parse(dateAsStringFromDB);
+                    if (dtDB == cdtDB) {
+                        Reminder reminder = dataSnapshot.getValue(Reminder.class);
+                        list.add(reminder);
+                    }
                 }
                 ListAdapter.notifyDataSetChanged();
 

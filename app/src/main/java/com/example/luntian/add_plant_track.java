@@ -149,6 +149,7 @@ public class add_plant_track extends AppCompatActivity {
             //String newTrackImg = rIn.getStringExtra("AddNewImg");
             //imageUri = Uri.parse(newTrackImg);
            // trackplantImg.setImageURI(imageUri);
+
         }
         trackplantImg.setOnClickListener(new View.OnClickListener() {
             @Override

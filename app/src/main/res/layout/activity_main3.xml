@@ -144,4 +144,14 @@
       android:text="Planner" />
 
 
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:text="Time"
+      android:layout_below="@+id/planner"
+      android:id="@+id/text_view_date"
+    />
+
+
+
 </RelativeLayout>

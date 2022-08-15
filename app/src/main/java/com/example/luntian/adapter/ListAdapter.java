@@ -41,6 +41,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
         holder.d.setText(Reminder.getd());
         holder.tm.setText(Reminder.gettm());
         holder.dt.setText(Reminder.getdt());
+        holder.currentDate.setText(Reminder.getcurrentDate());
 
     }
 
@@ -51,7 +52,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView t, d, tm, dt;
+        TextView t, d, tm, dt, currentDate;
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -60,6 +61,7 @@ public class ListAdapter extends RecyclerView.Adapter<ListAdapter.MyViewHolder> 
             d = itemView.findViewById(R.id.tvdesc);
             tm = itemView.findViewById(R.id.tvtime);
             dt = itemView.findViewById(R.id.tvdate);
+            currentDate = itemView.findViewById(R.id.tvcdate);
 
 
         }

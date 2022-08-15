@@ -1,16 +1,18 @@
 package com.example.luntian;
 
 public class Reminder {
+    String currentDate;
     String t;
     String d;
     String tm;
     String dt;
 
-    public Reminder(String t, String d, String tm, String dt) {
+    public Reminder(String t, String d, String tm, String dt, String currentDate) {
         this.t = t;
         this.d = d;
         this.tm = tm;
         this.dt = dt;
+        this.currentDate = currentDate;
     }
 
     public String gett() {
@@ -29,6 +31,9 @@ public class Reminder {
         return dt;
     }
 
+    public String getcurrentDate() {
+        return currentDate;
+    }
     public Reminder() {
     }
 }
