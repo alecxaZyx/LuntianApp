@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -19,11 +20,21 @@ public class plant_growth_tracking extends AppCompatActivity {
     Button addPlantTrackBtn, viewTrackView;
     RecyclerView trackListView;
     PlantTrackAdapter trackAdapter;
+    TextView homeTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plant_growth_tracking);
+        homeTitle = findViewById(R.id.appTitle);
+        homeTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(plant_growth_tracking.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         addPlantTrackBtn = findViewById(R.id.addPlantTrackBtn);
         addPlantTrackBtn.setOnClickListener(new View.OnClickListener() {

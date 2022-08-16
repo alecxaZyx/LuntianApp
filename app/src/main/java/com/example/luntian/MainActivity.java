@@ -84,6 +84,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             }
         });
+        plannerBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity.this, ReminderMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
 
 

@@ -14,6 +14,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.Format;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -22,18 +23,30 @@ import java.util.Locale;
 
 public class upcoming extends AppCompatActivity {
 
+
     RecyclerView recyclerView;
+   // TextView tvdate;
     DatabaseReference database;
     com.example.luntian.adapter.ListAdapter ListAdapter;
     ArrayList<Reminder> list;
+    String tomorrow;
     Calendar calendar = Calendar.getInstance();
-    String currentDate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date());
-    String currentTime = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+    String currentdate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()).toString();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming);
+
+        //tvdate = (TextView) findViewById(R.id.tvdate);
+
+        //tomorrow
+        Date date;
+        calendar.add(Calendar.DATE, 1);
+        date = calendar.getTime();
+        Format format = new SimpleDateFormat("dd-MM-yyyy");
+        tomorrow = format.format(date);
+        //retrieve data from database
         recyclerView = findViewById(R.id.userList);
         database = FirebaseDatabase.getInstance().getReference("Reminder");
         recyclerView.setHasFixedSize(true);
@@ -43,11 +56,13 @@ public class upcoming extends AppCompatActivity {
         ListAdapter = new ListAdapter(this, list);
         recyclerView.setAdapter(ListAdapter);
 
-        database.orderByChild("dt").limitToLast(5).addValueEventListener(new ValueEventListener() {
+        database.orderByChild("dt").startAt(tomorrow).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
 
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {
+                   // String tvdate = dataSnapshot.child("dt").getValue().toString();
+                   // tvdate.setText(tvdate);
                     Reminder reminder = dataSnapshot.getValue(Reminder.class);
                     list.add(reminder);
 

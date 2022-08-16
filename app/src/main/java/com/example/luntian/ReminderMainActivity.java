@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -17,18 +18,23 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.text.DateFormat;
+import java.text.Format;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class ReminderMainActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
     DatabaseReference database;
+    String tomorrow;
     Calendar calendar = Calendar.getInstance();
-    String currentdate = DateFormat.getDateInstance().format(calendar.getTime());
+    String currentdate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()).toString();
     com.example.luntian.adapter.ListAdapter ListAdapter;
     ArrayList<Reminder> list;
+    TextView homeTitle;
 
 
 
@@ -37,16 +43,22 @@ public class ReminderMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_main);
 
+
+        Date date;
+        calendar.add(Calendar.DATE, 1);
+        date = calendar.getTime();
+        Format format = new SimpleDateFormat("dd-MM-yyyy");
+        tomorrow = format.format(date);
+
         recyclerView = findViewById(R.id.userList);
         database = FirebaseDatabase.getInstance().getReference("Reminder");
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
         list = new ArrayList<Reminder>();
         ListAdapter = new ListAdapter(this,list);
         recyclerView.setAdapter(ListAdapter);
 
-        database.orderByChild("dt").limitToFirst(4).addValueEventListener(new ValueEventListener() {
+        database.orderByChild("dt").startAt(currentdate).endAt(tomorrow).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for (DataSnapshot dataSnapshot : snapshot.getChildren()) {

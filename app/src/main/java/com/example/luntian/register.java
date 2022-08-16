@@ -1,5 +1,6 @@
 package com.example.luntian;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Patterns;
 import android.view.View;
@@ -96,6 +97,9 @@ public class register extends AppCompatActivity {
                                             if(task.isSuccessful()){
                                                 Toast.makeText(register.this, "User has been registered successfully!", Toast.LENGTH_LONG).show();
                                                 pd.setVisibility(View.GONE);
+                                                Intent intent = new Intent(register.this, login.class);
+                                                startActivity(intent);
+                                                finish();
                                             } else {
                                                 Toast.makeText(register.this, "User registration failed!", Toast.LENGTH_LONG).show();
                                                 pd.setVisibility(View.GONE);

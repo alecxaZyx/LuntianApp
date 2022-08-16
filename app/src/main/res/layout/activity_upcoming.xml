@@ -33,7 +33,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_marginLeft="50dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/layout"
         android:backgroundTint="#51A375"
         android:fontFamily="@font/fredoka_regular"
@@ -56,20 +56,33 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:layout_marginStart="10dp"
             android:drawableLeft="@drawable/calendar"
-            android:text="UPCOMING"
+            android:text=" Upcoming"
             android:textSize="30dp"
             android:textColor="#51A375"
+            android:fontFamily="@font/fredoka_regular"
+            android:letterSpacing="0.03"
             />
+        <TextView
+            android:id="@+id/tvdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="UpcomingDate"
+            android:fontFamily="@font/raleway_regular"
+            android:textColor="@color/darker_green"
+            android:padding="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:textSize="16sp"
+            android:visibility="gone"
+            ></TextView>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/userList"
             android:layout_width="match_parent"
-            android:layout_height="483dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"/>
 
 
     </LinearLayout>

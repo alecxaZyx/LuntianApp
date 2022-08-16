@@ -82,6 +82,7 @@ public class login extends AppCompatActivity {
                             startActivity(intent);
                         } else{
                             Toast.makeText(login.this, "Login Failed!", Toast.LENGTH_LONG).show();
+                            pd.setVisibility(View.GONE);
                         }
                     }
                 });
