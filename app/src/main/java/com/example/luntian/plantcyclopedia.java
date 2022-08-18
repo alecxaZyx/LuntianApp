@@ -4,11 +4,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -16,6 +18,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.luntian.adapter.plantAdapter;
 import com.example.luntian.model.PlantModel;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,11 +38,64 @@ public class plantcyclopedia extends AppCompatActivity {
     plantAdapter plantadapter;
     List<PlantModel> plantModelList;
 
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_plantcyclopedia);
+
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.plantcyclopedia);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        startActivity(intent);
+
+                        overridePendingTransition(0,0);
+
+                        return true;
+
+                    case R.id.planttracking:
+                        Intent intent2 = new Intent(getApplicationContext(), plant_growth_tracking.class);
+
+                        startActivity(intent2);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.plantcyclopedia:
+                        Intent intent3 = new Intent(getApplicationContext(), plantcyclopedia.class);
+
+                        startActivity(intent3);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.planner:
+                        Intent intent4 = new Intent(getApplicationContext(), ReminderMainActivity.class);
+
+                        startActivity(intent4);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.settings:
+                        Intent intent5 = new Intent(getApplicationContext(), Settings.class);
+
+                        startActivity(intent5);
+
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
 
         plantListView = (RecyclerView) findViewById(R.id.plantListview);
         plantListView.setLayoutManager(new LinearLayoutManager(plantcyclopedia.this));

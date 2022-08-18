@@ -77,6 +77,7 @@ public class plantAdapter extends FirebaseRecyclerAdapter<PlantModel, plantAdapt
                 intent.putExtra("Repotting", pRepot);
 
                 context.startActivity(intent);
+                
             }
         });
     }

@@ -2,6 +2,7 @@ package com.example.luntian;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -12,6 +13,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.luntian.adapter.ListAdapter;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -36,13 +38,74 @@ public class ReminderMainActivity extends AppCompatActivity {
     ArrayList<Reminder> list;
     TextView homeTitle;
 
-
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_reminder_main);
 
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.planner);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        startActivity(intent);
+
+                        overridePendingTransition(0,0);
+
+                        return true;
+
+                    case R.id.planttracking:
+                        Intent intent2 = new Intent(getApplicationContext(), plant_growth_tracking.class);
+
+                        startActivity(intent2);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.plantcyclopedia:
+                        Intent intent3 = new Intent(getApplicationContext(), plantcyclopedia.class);
+
+                        startActivity(intent3);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.planner:
+                        Intent intent4 = new Intent(getApplicationContext(), ReminderMainActivity.class);
+
+                        startActivity(intent4);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.settings:
+                        Intent intent5 = new Intent(getApplicationContext(), Settings.class);
+
+                        startActivity(intent5);
+
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+        homeTitle = findViewById(R.id.luntian);
+        homeTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ReminderMainActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
 
         Date date;
         calendar.add(Calendar.DATE, 1);
@@ -84,6 +147,7 @@ public class ReminderMainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent intent = new Intent(ReminderMainActivity.this, upcoming.class);
                 startActivity(intent);
+
             }
         });
 

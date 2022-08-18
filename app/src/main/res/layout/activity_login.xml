@@ -34,6 +34,7 @@
             android:hint="email address"
             android:inputType="text"
             android:textColor="@color/darker_green"
+            android:textColorHint="@color/light_green"
             android:padding="8dp"
             android:textSize="20sp"></EditText>
 
@@ -45,6 +46,7 @@
             android:background="@drawable/rounded_corner"
             android:fontFamily="@font/fredoka_regular"
             android:textColor="@color/darker_green"
+            android:textColorHint="@color/light_green"
             android:hint="password"
             android:inputType="textPassword"
             android:padding="8dp"

@@ -37,7 +37,7 @@ public class humidity_monitoring extends AppCompatActivity {
             public void onClick(View view) {
                 setHumidity.setVisibility(View.VISIBLE);
                 setHumidityBtn.setVisibility(View.VISIBLE);
-                currentHumidity.setVisibility(View.INVISIBLE);
+
 
 
             }
@@ -46,8 +46,8 @@ public class humidity_monitoring extends AppCompatActivity {
         setHumidityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                currentHumidity.setVisibility(View.VISIBLE);
-                setHumidity.setVisibility(View.INVISIBLE);
+
+                setHumidity.setVisibility(View.GONE);
             }
 
         });

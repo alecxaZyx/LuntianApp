@@ -116,12 +116,17 @@ public class plant_trackview extends AppCompatActivity {
         gridLabel.setVerticalAxisTitle("Height");
         //set graphview viewports
         graphView.getViewport().setMinX(1);
-        graphView.getViewport().setMaxX(30);
+        graphView.getViewport().setMaxX(10);
         graphView.getViewport().setMinY(2.0);
-        graphView.getViewport().setMaxY(30.0);
+        graphView.getViewport().setMaxY(15.0);
+
 
         graphView.getViewport().setYAxisBoundsManual(true);
         graphView.getViewport().setXAxisBoundsManual(true);
+        //graphView.getViewport().setScalable(true);  // activate horizontal zooming and scrolling
+       // graphView.getViewport().setScrollable(true);  // activate horizontal scrolling
+        //graphView.getViewport().setScalableY(true);  // activate horizontal and vertical zooming and scrolling
+       // graphView.getViewport().setScrollableY(true);
 
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference("PlantGrowthRate").child(id);

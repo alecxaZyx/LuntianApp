@@ -23,7 +23,7 @@
             android:includeFontPadding="false"
             android:padding="15dp"
             android:text="LUNTIAN"
-            android:textColor="@color/dark_green"
+            android:textColor="@color/white"
             android:textSize="45sp"></TextView>
     </LinearLayout>
 

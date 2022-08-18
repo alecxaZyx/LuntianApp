@@ -36,211 +36,324 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@id/menuBar"
-        android:layout_margin="10dp">
+        android:layout_marginStart="10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp">
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_margin="5dp"
             android:orientation="vertical">
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
+                android:layout_marginStart="10dp"
                 android:layout_marginTop="15dp"
-                android:layout_marginStart="10dp">
+                android:orientation="vertical">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Plant Name"
                     android:fontFamily="@font/fredoka_regular"
+                    android:text="Plant Name"
                     android:textColor="@color/white"
                     android:textSize="20sp"></TextView>
+
                 <EditText
                     android:id="@+id/trackName"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edittext_bg_white"
-                    android:textColor="@color/darker_green"
                     android:fontFamily="@font/raleway_regular"
-                    android:textSize="20sp"
-                    android:padding="5dp"></EditText>
+                    android:padding="5dp"
+                    android:textColor="@color/darker_green"
+                    android:textSize="20sp"></EditText>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Date Planted"
                     android:fontFamily="@font/fredoka_regular"
+                    android:text="Date Planted"
                     android:textColor="@color/white"
                     android:textSize="20sp"></TextView>
+
                 <EditText
                     android:id="@+id/trackDatePlanted"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_marginTop="15dp"
                     android:background="@drawable/edittext_bg_white"
-                    android:textColor="@color/darker_green"
                     android:fontFamily="@font/raleway_regular"
-                    android:textSize="20sp"
-                    android:padding="5dp"></EditText>
+                    android:padding="5dp"
+                    android:textColor="@color/darker_green"
+                    android:textSize="20sp"></EditText>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="20dp"
-                    android:text="Water Frequency"
                     android:fontFamily="@font/fredoka_regular"
+                    android:text="Water Frequency"
                     android:textColor="@color/white"
                     android:textSize="20sp"></TextView>
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center"
                 android:layout_marginTop="15dp"
-                android:orientation="horizontal"
-                android:layout_gravity="center">
+                android:orientation="horizontal">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_bg_white"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_bg_white">
+
                     <Spinner
                         android:id="@+id/spnWF1"
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:padding="3dp"
-                    android:theme="@style/ThemeOverlay.AppCompat.Light"
-                    android:spinnerMode="dropdown"
-                   ></Spinner>
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp"
+                        android:spinnerMode="dropdown"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"></Spinner>
                 </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="times per"
-                    android:textSize="18sp"
+                    android:layout_margin="10dp"
                     android:fontFamily="@font/fredoka_regular"
+                    android:padding="10dp"
+                    android:text="times per"
                     android:textColor="@color/white"
-                    android:layout_margin="10dp"></TextView>
+                    android:textSize="18sp"></TextView>
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/edittext_bg_white"
-                    android:layout_margin="10dp">
+                    android:layout_margin="10dp"
+                    android:background="@drawable/edittext_bg_white">
+
                     <Spinner
                         android:id="@+id/spnWF2"
                         android:layout_width="100dp"
                         android:layout_height="wrap_content"
                         android:padding="3dp"
-                        android:theme="@style/ThemeOverlay.AppCompat.Light"
                         android:spinnerMode="dropdown"
-                        ></Spinner>
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"></Spinner>
                 </LinearLayout>
             </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
+
+            <GridLayout
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:layout_margin="5dp">
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:rowCount="1">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:text="Fertilizer Frequency"
+                    android:layout_marginEnd="50dp"
                     android:fontFamily="@font/fredoka_regular"
+                    android:text="Time"
                     android:textColor="@color/white"
                     android:textSize="20sp"></TextView>
-                <LinearLayout
+
+                <TextView
+                    android:id="@+id/waterTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="15dp"
-                    android:orientation="horizontal"
-                    android:layout_gravity="center">
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edittext_bg_white"
-                        android:layout_margin="10dp">
-                        <Spinner
-                            android:id="@+id/spnFF1"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp"
-                            android:theme="@style/ThemeOverlay.AppCompat.Light"
-                            android:spinnerMode="dropdown"
-                            ></Spinner>
-                    </LinearLayout>
+                    android:layout_marginStart="50dp"
+                    android:background="@drawable/edittext_bg_white"
+                    android:fontFamily="@font/raleway_regular"
+                    android:padding="10dp"
+                    android:text="Select Time"
+                    android:textColor="@color/darker_green"
+                    android:textSize="19sp"></TextView>
+            </GridLayout>
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="times per"
-                        android:textSize="18sp"
-                        android:fontFamily="@font/fredoka_regular"
-                        android:textColor="@color/white"
-                        android:layout_margin="10dp"></TextView>
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:background="@drawable/edittext_bg_white"
-                        android:layout_margin="10dp">
-                        <Spinner
-                            android:id="@+id/spnFF2"
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:padding="3dp"
-                            android:theme="@style/ThemeOverlay.AppCompat.Light"
-                            android:spinnerMode="dropdown"
-                            ></Spinner>
-                    </LinearLayout>
-                </LinearLayout>
-            </LinearLayout>
             <LinearLayout
-                android:layout_width="match_parent"
+                android:id="@+id/waterInterval"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="vertical">
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal"
+                android:visibility="gone">
+
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    android:text="Add Plant Photo"
+                    android:layout_marginEnd="30dp"
                     android:fontFamily="@font/fredoka_regular"
+                    android:text="Time Interval"
                     android:textColor="@color/white"
                     android:textSize="20sp"></TextView>
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@drawable/edittext_bg_white"
+                    android:layout_marginStart="10dp">
+                    <Spinner
+                        android:id="@+id/spinnerTimeInterval"
+                        android:layout_width="100dp"
+                        android:layout_height="wrap_content"
+                        android:padding="3dp"
+                        android:spinnerMode="dropdown"
+                        android:theme="@style/ThemeOverlay.AppCompat.Light"></Spinner>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="15dp"
+                    android:fontFamily="@font/fredoka_regular"
+                    android:text="Fertilizer Frequency"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    >
+                    android:layout_marginTop="15dp"
+                    android:orientation="horizontal">
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/edittext_bg_white">
+
+                        <Spinner
+                            android:id="@+id/spnFF1"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:spinnerMode="dropdown"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"></Spinner>
+                    </LinearLayout>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:fontFamily="@font/fredoka_regular"
+                        android:padding="10dp"
+                        android:text="times per"
+                        android:textColor="@color/white"
+                        android:textSize="18sp"></TextView>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="10dp"
+                        android:background="@drawable/edittext_bg_white">
+
+                        <Spinner
+                            android:id="@+id/spnFF2"
+                            android:layout_width="100dp"
+                            android:layout_height="wrap_content"
+                            android:padding="3dp"
+                            android:spinnerMode="dropdown"
+                            android:theme="@style/ThemeOverlay.AppCompat.Light"></Spinner>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+
+            <GridLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:columnCount="2"
+                android:orientation="horizontal"
+                android:rowCount="1">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50dp"
+                    android:fontFamily="@font/fredoka_regular"
+                    android:text="Time"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
+
+                <TextView
+                    android:id="@+id/fertilizerTime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50dp"
+                    android:background="@drawable/edittext_bg_white"
+                    android:fontFamily="@font/raleway_regular"
+                    android:padding="10dp"
+                    android:text="Select Time"
+                    android:textColor="@color/darker_green"
+                    android:textSize="19sp"></TextView>
+            </GridLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/fredoka_regular"
+                    android:text="Add Plant Photo"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"></TextView>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="15dp"
+                    android:background="@drawable/edittext_bg_white">
+
                     <ImageView
                         android:id="@+id/planttrackImg"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/plusicon"
                         android:layout_margin="15dp"
-                        ></ImageView>
+                        android:background="@drawable/plusicon"></ImageView>
                 </LinearLayout>
+
                 <Button
                     android:id="@+id/trackPlantBtn"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
                     android:layout_marginTop="30dp"
+                    android:layout_marginBottom="30dp"
                     android:background="@drawable/mybutton"
-                    app:backgroundTint="@color/white"
+                    android:fontFamily="@font/fredoka_regular"
                     android:text="Track Plant"
                     android:textColor="@color/darker_green"
-                    android:fontFamily="@font/fredoka_regular"
-                    android:layout_marginBottom="30dp"
-                    android:textSize="20sp"></Button>
+                    android:textSize="20sp"
+                    app:backgroundTint="@color/white"></Button>
             </LinearLayout>
-
-
-
 
 
         </LinearLayout>

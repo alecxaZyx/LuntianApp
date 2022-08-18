@@ -1,6 +1,9 @@
 package com.example.luntian;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -30,6 +33,7 @@ public class upcoming extends AppCompatActivity {
     com.example.luntian.adapter.ListAdapter ListAdapter;
     ArrayList<Reminder> list;
     String tomorrow;
+    TextView homeTitle;
     Calendar calendar = Calendar.getInstance();
     String currentdate = new SimpleDateFormat("dd-MM-yyyy", Locale.getDefault()).format(new Date()).toString();
 
@@ -38,6 +42,15 @@ public class upcoming extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_upcoming);
 
+        homeTitle = findViewById(R.id.luntian);
+        homeTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(upcoming.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
         //tvdate = (TextView) findViewById(R.id.tvdate);
 
         //tomorrow

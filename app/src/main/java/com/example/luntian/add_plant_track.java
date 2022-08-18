@@ -2,10 +2,14 @@ package com.example.luntian;
 
 import android.app.DatePickerDialog;
 import android.app.ProgressDialog;
+import android.app.TimePickerDialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.DatePicker;
@@ -13,6 +17,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -27,22 +33,28 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 
 public class add_plant_track extends AppCompatActivity {
 
-    Spinner spnWF1, spnWF2, spnFF1, spnFF2;
-    EditText datePlanted, trackName;
-    ImageView trackplantImg;
-    Button trackPlantBtn;
+    private Spinner spnWF1, spnWF2, spnFF1, spnFF2, spnwaterInterval;
+    private EditText datePlanted, trackName;
+    private ImageView trackplantImg;
+    private Button trackPlantBtn;
     private TextView dateTimeDisplay;
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
     private String date;
 
+    private TextView waterTime, fertilizerTime;
+    private int timerHour,timerMinute;
+
     private static final int img_code=1;
-    public Uri imageUri=null;
+    private Uri imageUri = null;
+    private Uri imgUri = null;
     ProgressDialog pd;
 
     String pName;
@@ -77,8 +89,8 @@ public class add_plant_track extends AppCompatActivity {
         spnFF1 = findViewById(R.id.spnFF1);
         spnFF2 = findViewById(R.id.spnFF2);
 
-        String[] spn1 =new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9"};
-        String[] spn2 = new String[]{"day", "week", "month"};
+        String[] spn1 =new String[]{"none","once", "twice", "thrice", "four", "five", "six", "seven"};
+        String[] spn2 = new String[]{"day", "week", "month", "none"};
 
         ArrayAdapter<String> adapter1 =new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, spn1);
         adapter1.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
@@ -90,17 +102,113 @@ public class add_plant_track extends AppCompatActivity {
         spnWF2.setAdapter(adapter2);
         spnFF2.setAdapter(adapter2);
 
+        spnwaterInterval = findViewById(R.id.spinnerTimeInterval);
+        String[] interval = new String[]{"none","4 hours","6 hours", "8 hours", "10 hours", "12 hours"};
+        ArrayAdapter<String> adapter3 = new ArrayAdapter<>(this, android.R.layout.simple_spinner_dropdown_item, interval);
+        adapter3.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spnwaterInterval.setAdapter(adapter3);
+
+        spnWF1.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                String selectedItem = parent.getItemAtPosition(position).toString();
+                if (selectedItem.equals("twice") || selectedItem.equals("thrice") || selectedItem.equals("four")) {
+                    View intervalView = findViewById(R.id.waterInterval);
+                    intervalView.setVisibility(View.VISIBLE);
+                } else {
+                    if (selectedItem.equals("once") || selectedItem.equals("none") || selectedItem.equals("five") ||selectedItem.equals("six") ||
+                            selectedItem.equals("seven") ) {
+                        View intervalView = findViewById(R.id.waterInterval);
+                        intervalView.setVisibility(View.GONE);
+                    }
+                }
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> adapterView) {
+
+            }
+        });
+
+
 
         trackName = findViewById(R.id.trackName);
         trackplantImg = findViewById(R.id.planttrackImg);
 
-        //if track plant is clicked on a specific plantcyclopedia gets intent then transfer here
 
+        waterTime = findViewById(R.id.waterTime);
+        waterTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(add_plant_track.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                                timerHour = hour;
+                                timerMinute = minute;
+                                //store
+                                String time = timerHour + ":" + timerMinute;
+                                SimpleDateFormat f24Hours = new SimpleDateFormat(
+                                        "HH:mm"
+                                );
+                                try {
+                                    Date date = f24Hours.parse(time);
+                                    // 12 hour time format
+                                    SimpleDateFormat f12Hours = new SimpleDateFormat(
+                                            "hh:mm aa"
+                                    );
+                                    // set selected time
+                                    waterTime.setText(f12Hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false);
+                //set transparent background
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //Display previous time
+                timePickerDialog.updateTime(timerHour, timerMinute);
+                //show dialog
+                timePickerDialog.show();
+            }
+        });
 
-
-
-
-
+        fertilizerTime = findViewById(R.id.fertilizerTime);
+        fertilizerTime.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                TimePickerDialog timePickerDialog = new TimePickerDialog(add_plant_track.this, android.R.style.Theme_Holo_Light_Dialog_MinWidth,
+                        new TimePickerDialog.OnTimeSetListener() {
+                            @Override
+                            public void onTimeSet(TimePicker timePicker, int hour, int minute) {
+                                timerHour = hour;
+                                timerMinute = minute;
+                                //store
+                                String time = timerHour + ":" + timerMinute;
+                                SimpleDateFormat f24Hours = new SimpleDateFormat(
+                                        "HH:mm"
+                                );
+                                try {
+                                    Date date = f24Hours.parse(time);
+                                    // 12 hour time format
+                                    SimpleDateFormat f12Hours = new SimpleDateFormat(
+                                            "hh:mm aa"
+                                    );
+                                    // set selected time
+                                    fertilizerTime.setText(f12Hours.format(date));
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                            }
+                        }, 12, 0, false);
+                //set transparent background
+                timePickerDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                //Display previous time
+                timePickerDialog.updateTime(timerHour, timerMinute);
+                //show dialog
+                timePickerDialog.show();
+            }
+        });
 
 
         /* get current date for date planted */
@@ -146,9 +254,11 @@ public class add_plant_track extends AppCompatActivity {
             //Picasso.get().load(newTrackImg).into(trackplantImg);
             pName = trackName.getText().toString().trim();
 
+
             //String newTrackImg = rIn.getStringExtra("AddNewImg");
             //imageUri = Uri.parse(newTrackImg);
-           // trackplantImg.setImageURI(imageUri);
+            //trackplantImg.setImageURI(imageUri);
+
 
         }
         trackplantImg.setOnClickListener(new View.OnClickListener() {
@@ -157,6 +267,7 @@ public class add_plant_track extends AppCompatActivity {
                 Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
                 intent.setType("image/*");
                 startActivityForResult(intent, img_code);
+
             }
         });
         trackPlantBtn = findViewById(R.id.trackPlantBtn);
@@ -171,6 +282,9 @@ public class add_plant_track extends AppCompatActivity {
                 String spinnerWF2 = spnWF2.getSelectedItem().toString().trim();
                 String spinnerFF1 = spnFF1.getSelectedItem().toString().trim();
                 String spinnerFF2 = spnFF2.getSelectedItem().toString().trim();
+                String waterTimeTxt = waterTime.getText().toString().trim();
+
+                String fertTimeTxt = fertilizerTime.getText().toString().trim();
 
                 pd.setTitle("Adding plant...");
                 pd.show();
@@ -191,10 +305,21 @@ public class add_plant_track extends AppCompatActivity {
                                 newPost.child("DatePlanted").setValue(pPlanted);
                                 newPost.child("WaterFrequency1").setValue(spinnerWF1);
                                 newPost.child("WaterFrequency2").setValue(spinnerWF2);
+                                newPost.child("WaterTime").setValue(waterTimeTxt);
+                                if (spnwaterInterval != null){
+                                    String waterInterv = spnwaterInterval.getSelectedItem().toString().trim();
+                                    newPost.child("WaterInterval").setValue(waterInterv);
+                                } else {
+                                    String waterInterv = "0";
+                                    newPost.child("WaterInterval").setValue(waterInterv);
+                                }
+
                                 newPost.child("FertilizerFreq1").setValue(spinnerFF1);
                                 newPost.child("FertilizerFreq2").setValue(spinnerFF2);
-                                pd.dismiss();
+                                newPost.child("FertilizerTime").setValue(fertTimeTxt);
 
+                                pd.dismiss();
+                                Toast.makeText(add_plant_track.this, "New Plant to Track Added!", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(add_plant_track.this, plant_growth_tracking.class);
                                 startActivity(intent);
                                 finish();
@@ -213,7 +338,10 @@ public class add_plant_track extends AppCompatActivity {
             String newTrackImg = rIn.getStringExtra("AddNewImg");
             imageUri = Uri.parse(newTrackImg);
             trackplantImg.setImageURI(imageUri);
-        } else*/ if(requestCode == img_code && resultCode == RESULT_OK){
+        } else else if(resultCode == RESULT_CANCELED){
+            return;
+        }*/
+        if(requestCode == img_code && resultCode == RESULT_OK){
             imageUri = data.getData();
             trackplantImg.setImageURI(imageUri);
         }

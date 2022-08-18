@@ -5,16 +5,33 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/darker_green"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
     tools:context=".plantcyclopedia">
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        app:labelVisibilityMode="labeled"
+        android:outlineAmbientShadowColor="@android:color/transparent"
+        android:outlineSpotShadowColor="@android:color/transparent"
+        android:background="@android:color/transparent"
+        app:itemBackground="@color/white"
+        app:menu="@menu/bottomnavbar"
+        app:itemTextColor="@drawable/selector2"
+        app:itemIconTint="@drawable/selector2"/>
 
     <LinearLayout
         android:id="@+id/titleBar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:background="@drawable/topbar"
-        android:padding="10dp"
-        android:layout_marginBottom="20dp">
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/top"
+        android:padding="10dp">
+
         <TextView
             android:id="@+id/appTitle"
             android:layout_width="wrap_content"

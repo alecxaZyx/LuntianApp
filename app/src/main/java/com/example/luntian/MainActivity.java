@@ -1,6 +1,5 @@
 package com.example.luntian;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
@@ -8,29 +7,81 @@ import android.view.View;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity /*implements NavigationView.OnNavigationItemSelectedListener */{
 
     ImageView humidityBtn, soilmoistureBtn, plannerBtn, plantcyclopediaBtn, plantgrowthBtn, reminderBtn;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    BottomNavigationView bottomNavigationView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        drawerLayout = findViewById(R.id.drawer_layout);
+        bottomNavigationView = findViewById(R.id.bottomNavigationView);
+        bottomNavigationView.setSelectedItemId(R.id.home);
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                switch (item.getItemId()){
+                    case R.id.home:
+                        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+
+                        startActivity(intent);
+
+                        overridePendingTransition(0,0);
+
+                        return true;
+
+                    case R.id.planttracking:
+                        Intent intent2 = new Intent(getApplicationContext(), plant_growth_tracking.class);
+
+                        startActivity(intent2);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.plantcyclopedia:
+                        Intent intent3 = new Intent(getApplicationContext(), plantcyclopedia.class);
+
+                        startActivity(intent3);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.planner:
+                        Intent intent4 = new Intent(getApplicationContext(), ReminderMainActivity.class);
+
+                        startActivity(intent4);
+
+                        overridePendingTransition(0,0);
+                        return true;
+
+                    case R.id.settings:
+                        Intent intent5 = new Intent(getApplicationContext(), Settings.class);
+
+                        startActivity(intent5);
+
+                        overridePendingTransition(0,0);
+                        return true;
+                }
+                return false;
+            }
+        });
+
+       /* drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
-        toolbar = findViewById(R.id.toolbar);
+        toolbar = findViewById(R.id.toolbar);*/
 
         humidityBtn = findViewById(R.id.humidityBtn);
         soilmoistureBtn = findViewById(R.id.soilmoistureBtn);
@@ -95,26 +146,26 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
 
 
-        /*
-         */
+
+
 
         /*----------------------------------TOOLBAR------------------------------------------*/
 
-        Toolbar toolbar = findViewById(R.id.toolbar);
+        /*  Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+*/
 
-
-        /*---------Navigation Drawer Menu -----------------------------------------*/
+        /*---------Navigation Drawer Menu -----------------------------------------
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
         toggle.syncState();
-        navigationView.setNavigationItemSelectedListener(this);
+        navigationView.setNavigationItemSelectedListener(this);*/
 
 
 
     }
-
+/*
     @Override
     public void onBackPressed() {
 
@@ -177,7 +228,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         drawerLayout.closeDrawer(GravityCompat.START)  ;
         return true;
     }
-
+*/
 
     }
 

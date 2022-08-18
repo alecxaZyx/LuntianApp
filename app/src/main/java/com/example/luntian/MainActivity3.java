@@ -35,11 +35,23 @@ public class MainActivity3 extends AppCompatActivity  {
     Calendar calendar = Calendar.getInstance();
     String currentDate = DateFormat.getDateInstance().format(calendar.getTime());
     DatabaseReference reminderDBRef;
+    TextView homeTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main3);
+
+        homeTitle = findViewById(R.id.homeTitle);
+        homeTitle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MainActivity3.this, MainActivity.class);
+
+                startActivity(intent);
+                finish();
+            }
+        });
 
         //current date
         textViewDate = findViewById(R.id.text_view_date);
@@ -130,6 +142,10 @@ public class MainActivity3 extends AppCompatActivity  {
             @Override
             public void onClick(View view) {
                 insertReminderData();
+                Intent intent = getIntent();
+                finish();
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
     }

@@ -185,6 +185,7 @@
                             android:layout_height="wrap_content"
                             android:textAlignment="center"
                             android:fontFamily="@font/raleway_regular"
+                            android:textColor="@color/darker_green"
                             android:textSize="20sp"
                             android:background="@drawable/edittext_bg_white"
                             android:padding="5dp"></EditText>
@@ -334,6 +335,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="10dp"
+                        android:textColor="@color/white"
                         android:background="@drawable/textbg_rounded"
                         android:fontFamily="@font/raleway_regular"
                         android:hint="remarks here"
